@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import qm.entity.User;
-import qm.mapper.UserMapper;
+import qm.dao.entity.User;
+import qm.dao.mapper.UserMapper;
 
 /*******************************************************************
  * <pre></pre>

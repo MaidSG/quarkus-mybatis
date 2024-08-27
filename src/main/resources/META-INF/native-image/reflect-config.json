@@ -1,0 +1,7 @@
+[
+  {
+    "name": "com.baomidou.mybatisplus.extension.toolkit.SqlRunner",
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  }
+]

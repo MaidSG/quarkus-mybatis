@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.maidsg</groupId>
     <artifactId>quarkus-mybatis</artifactId>
@@ -13,6 +14,13 @@
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.version>3.13.2</quarkus.platform.version>
+        <quarkus.native.additional-build-args>
+            --report-unsupported-elements-at-runtime,
+<!--            -H:+GenerateEmbeddedResourcesFile,-->
+            -H:+UnlockExperimentalVMOptions,
+            -H:ReflectionConfigurationFiles=reflect-config.json,
+            --initialize-at-run-time=com.baomidou.mybatisplus.extension.toolkit.SqlHelper
+        </quarkus.native.additional-build-args>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
     </properties>
@@ -45,11 +53,27 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-spring-di</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-metrics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -111,7 +135,8 @@
                 </executions>
                 <configuration>
                     <systemPropertyVariables>
-                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner
+                        </native.image.path>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>

@@ -1,4 +1,4 @@
-package qm.entity;
+package qm.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;

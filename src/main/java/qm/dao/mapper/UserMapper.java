@@ -1,9 +1,8 @@
-package qm.mapper;
+package qm.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.quarkiverse.mybatis.runtime.meta.MapperDataSource;
 import org.apache.ibatis.annotations.*;
-import qm.entity.User;
+import qm.dao.entity.User;
 
 /*******************************************************************
  * <pre></pre>
