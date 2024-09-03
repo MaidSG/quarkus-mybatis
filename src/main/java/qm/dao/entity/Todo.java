@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 @TableName("m_todo")
 public class Todo extends Model<User> {
 
-    private Integer id;
+    private Long id;
 
     private String title;
 
@@ -26,17 +26,17 @@ public class Todo extends Model<User> {
     public Todo() {
     }
 
-    public Todo(Integer id, String title, boolean completed) {
+    public Todo(Long id, String title, boolean completed) {
         this.id = id;
         this.title = title;
         this.completed = completed;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
