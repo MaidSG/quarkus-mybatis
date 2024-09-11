@@ -2,17 +2,15 @@ package qm.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.smallrye.common.annotation.RunOnVirtualThread;
+import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import org.eclipse.microprofile.metrics.annotation.Counted;
 import qm.dao.entity.Todo;
-import qm.dao.entity.User;
 import qm.dao.mapper.TodoMapper;
 import qm.dao.service.MpTodoService;
 import qm.service.ITodoService;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -64,12 +62,16 @@ public class TodoResource {
 
     @POST
     @Path("/add")
-    @Counted(name = "addTodo", description = "How many times the addTodo method has been invoked")
+    // @Counted(name = "addTodo", description = "How many times the addTodo method has been invoked")
     @RunOnVirtualThread
-    public Todo add(Todo todo){
+    public Uni<Todo> add(Todo todo){
 //        CompletableFuture.runAsync(() -> todoMapper.insert(todo), executor);
-        todoMapper.insert(todo);
-        return todo;
+        // todoMapper.insert(todo);
+        // return todo;
+         return Uni.createFrom().item(() -> {
+            todoMapper.insert(todo);
+            return todo;
+        });
     }
 
 
